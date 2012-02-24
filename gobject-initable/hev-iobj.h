@@ -37,7 +37,7 @@ struct _HevIObjClass
 
 GType hev_iobj_get_type(void);
 
-GObject * hev_iobj_new(GCancellable * cancellable, GError ** error);
+GObject * hev_iobj_new(GCancellable *cancellable, GError **error);
 
 G_END_DECLS
 

@@ -10,9 +10,9 @@
 
 #include "hev-iobj.h"
 
-int main(int argc, char * argv[])
+int main(int argc, char *argv[])
 {
-	GObject * iobj = NULL;
+	GObject *iobj = NULL;
 
 	g_type_init();
 
