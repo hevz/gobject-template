@@ -2,8 +2,8 @@
  ============================================================================
  Name        : hev-test.c
  Author      : Heiher <admin@heiher.info>
- Version     : 0.0.1
- Copyright   : Copyright (c) 2010 everyone.
+ Version     : 0.0.2
+ Copyright   : Copyright (c) 2012 everyone.
  Description : 
  ============================================================================
  */

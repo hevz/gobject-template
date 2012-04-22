@@ -2,8 +2,8 @@
  ============================================================================
  Name        : hev-iobj.c
  Author      : Heiher <admin@heiher.info>
- Version     : 0.0.1
- Copyright   : Copyright (C) 2011 everyone.
+ Version     : 0.0.2
+ Copyright   : Copyright (C) 2012 everyone.
  Description : 
  ============================================================================
  */
@@ -49,6 +49,7 @@ static void hev_iobj_finalize(GObject *obj)
 static GObject * hev_iobj_constructor(GType type, guint n, GObjectConstructParam *param)
 {
 	g_debug("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
+
 	return G_OBJECT_CLASS(hev_iobj_parent_class)->constructor(type, n, param);
 }
 
@@ -76,12 +77,14 @@ static void hev_iobj_class_init(HevIObjClass *klass)
 static void hev_iobj_initable_iface_init(GInitableIface *iface)
 {
 	g_debug("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
+
 	iface->init = hev_iobj_initable_init;
 }
 
 static void hev_iobj_init(HevIObj *self)
 {
 	HevIObjPrivate *priv = HEV_IOBJ_GET_PRIVATE(self);
+
 	g_debug("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
 }
 
@@ -89,12 +92,14 @@ static gboolean hev_iobj_initable_init(GInitable *initable,
 					GCancellable *cancellable, GError **error)
 {
 	g_debug("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
+
 	return TRUE;
 }
 
 GObject * hev_iobj_new(GCancellable *cancellable, GError **error)
 {
 	g_debug("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
+
 	return g_initable_new(HEV_TYPE_IOBJ, cancellable, error, NULL);
 }
 

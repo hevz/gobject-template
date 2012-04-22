@@ -2,8 +2,8 @@
  ============================================================================
  Name        : hev-iobj.h
  Author      : Heiher <admin@heiher.info>
- Version     : 0.0.1
- Copyright   : Copyright (C) 2011 everyone.
+ Version     : 0.0.2
+ Copyright   : Copyright (C) 2012 everyone.
  Description : 
  ============================================================================
  */
