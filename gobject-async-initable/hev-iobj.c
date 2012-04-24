@@ -12,19 +12,11 @@
 
 #define HEV_IOBJ_GET_PRIVATE(obj)	(G_TYPE_INSTANCE_GET_PRIVATE((obj), HEV_TYPE_IOBJ, HevIObjPrivate))
 
-enum
-{
-	STEP_ZERO,
-	STEP_FIRST,
-	STEP_SECOND,
-	N_STEPS
-};
-
 typedef struct _HevIObjPrivate HevIObjPrivate;
 
 struct _HevIObjPrivate
 {
-	gint step;
+	gchar c;
 };
 
 static void hev_iobj_async_initable_iface_init(GAsyncInitableIface *iface);
@@ -98,8 +90,12 @@ static void hev_iobj_init(HevIObj *self)
 	HevIObjPrivate *priv = HEV_IOBJ_GET_PRIVATE(self);
 
 	g_debug("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
+}
 
-	priv->step = STEP_ZERO;
+static void async_result_run_in_thread_handler(GSimpleAsyncResult *simple,
+			GObject *object, GCancellable *cancellable)
+{
+	g_debug("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
 }
 
 static void hev_iobj_async_initable_init_async(GAsyncInitable *initable,
@@ -111,28 +107,13 @@ static void hev_iobj_async_initable_init_async(GAsyncInitable *initable,
 	GSimpleAsyncResult *simple = NULL;
 
 	g_debug("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
-
+	
 	simple = g_simple_async_result_new(G_OBJECT(initable),
 				callback, user_data, hev_iobj_async_initable_init_async);
-
-	switch(priv->step)
-	{
-	case STEP_ZERO:
-		g_debug("%s:%d[%s]=>(%s)", __FILE__, __LINE__,
-					__FUNCTION__, "Zero");
-		priv->step = STEP_FIRST;
-	case STEP_FIRST:
-		g_debug("%s:%d[%s]=>(%s)", __FILE__, __LINE__,
-					__FUNCTION__, "Frist");
-		priv->step = STEP_SECOND;
-	case STEP_SECOND:
-		g_debug("%s:%d[%s]=>(%s)", __FILE__, __LINE__,
-					__FUNCTION__, "Second");
-		g_simple_async_result_set_check_cancellable(simple, cancellable);
-		g_simple_async_result_complete(simple);
-		g_object_unref(simple);
-		break;
-	}
+	g_simple_async_result_set_check_cancellable(simple, cancellable);
+	g_simple_async_result_run_in_thread(simple, async_result_run_in_thread_handler,
+				io_priority, cancellable);
+	g_object_unref(simple);
 }
 
 static gboolean hev_iobj_async_initable_init_finish(GAsyncInitable *initable,
