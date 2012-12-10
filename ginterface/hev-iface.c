@@ -10,9 +10,10 @@
 
 #include "hev-iface.h"
 
-G_DEFINE_INTERFACE(HevIFace, hev_iface, G_TYPE_OBJECT);
+G_DEFINE_INTERFACE (HevIFace, hev_iface, G_TYPE_OBJECT);
 
-static void hev_iface_default_init(HevIFaceInterface *klass)
+static void
+hev_iface_default_init (HevIFaceInterface *klass)
 {
 }
 
