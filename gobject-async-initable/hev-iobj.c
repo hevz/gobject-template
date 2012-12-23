@@ -153,12 +153,25 @@ hev_iobj_new_async (GCancellable *cancellable,
                 cancellable, callback, user_data, NULL);
 }
 
-GObject *
-hev_iobj_new_finish (GAsyncInitable *initable,
-            GAsyncResult *res, GError **error)
+HevIObj *
+hev_iobj_new_finish (GAsyncResult *res, GError **error)
 {
+    GObject *object;
+    GObject *source_object;
+
     g_debug ("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
 
-    return g_async_initable_new_finish (initable, res, error);
+    source_object = g_async_result_get_source_object (res);
+    g_assert (NULL != source_object);
+
+    object = g_async_initable_new_finish (G_ASYNC_INITABLE (source_object),
+                res, error);
+
+    g_object_unref (source_object);
+
+    if (NULL != object)
+      return HEV_IOBJ (object);
+
+    return NULL;
 }
 

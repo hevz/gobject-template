@@ -39,8 +39,7 @@ GType hev_iobj_get_type (void);
 
 void hev_iobj_new_async (GCancellable *cancellable,
             GAsyncReadyCallback callback, gpointer user_data);
-GObject * hev_iobj_new_finish (GAsyncInitable *initable,
-            GAsyncResult *res, GError **error);
+HevIObj * hev_iobj_new_finish (GAsyncResult *res, GError **error);
 
 G_END_DECLS
 

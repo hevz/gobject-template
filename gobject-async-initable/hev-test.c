@@ -16,10 +16,9 @@ hev_iobj_new_async_handler (GObject *source_object,
             gpointer user_data)
 {
     GMainLoop *main_loop = user_data;
-    GObject *iobj = NULL;
+    HevIObj *iobj = NULL;
 
-    iobj = hev_iobj_new_finish (G_ASYNC_INITABLE (source_object),
-                res, NULL);
+    iobj = hev_iobj_new_finish (res, NULL);
     if (iobj)
     {
         g_object_unref (iobj);
