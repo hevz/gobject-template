@@ -10,7 +10,8 @@
 
 #include "hev-iobj.h"
 
-#define HEV_IOBJ_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), HEV_TYPE_IOBJ, HevIObjPrivate))
+#define HEV_IOBJ_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), \
+                HEV_TYPE_IOBJ, HevIObjPrivate))
 
 typedef struct _HevIObjPrivate HevIObjPrivate;
 
@@ -55,7 +56,8 @@ hev_iobj_constructor (GType type,
 {
     g_debug ("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
 
-    return G_OBJECT_CLASS (hev_iobj_parent_class)->constructor (type, n, param);
+    return G_OBJECT_CLASS (hev_iobj_parent_class)->
+        constructor (type, n, param);
 }
 
 static void

@@ -16,9 +16,12 @@
 G_BEGIN_DECLS
 
 #define HEV_TYPE_IFACE (hev_iface_get_type ())
-#define HEV_IFACE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), HEV_TYPE_IFACE, HevIFace))
-#define HEV_IS_IFACE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), HEV_TYPE_IFACE))
-#define HEV_IFACE_GET_INTERFACE(inst) (G_TYPE_INSTANCE_GET_INTERFACE ((inst), HEV_TYPE_IFACE, HevIFaceInterface))
+#define HEV_IFACE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
+                HEV_TYPE_IFACE, HevIFace))
+#define HEV_IS_IFACE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), \
+                HEV_TYPE_IFACE))
+#define HEV_IFACE_GET_INTERFACE(inst) (G_TYPE_INSTANCE_GET_INTERFACE \
+            ((inst), HEV_TYPE_IFACE, HevIFaceInterface))
 
 typedef struct _HevIFace HevIFace;
 typedef struct _HevIFaceInterface HevIFaceInterface;

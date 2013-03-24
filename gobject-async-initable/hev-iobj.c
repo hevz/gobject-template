@@ -10,7 +10,8 @@
 
 #include "hev-iobj.h"
 
-#define HEV_IOBJ_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), HEV_TYPE_IOBJ, HevIObjPrivate))
+#define HEV_IOBJ_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), \
+                HEV_TYPE_IOBJ, HevIObjPrivate))
 
 typedef struct _HevIObjPrivate HevIObjPrivate;
 
@@ -27,7 +28,8 @@ static gboolean hev_iobj_async_initable_init_finish (GAsyncInitable *initable,
             GAsyncResult *result, GError **error);
 
 G_DEFINE_TYPE_WITH_CODE (HevIObj, hev_iobj, G_TYPE_OBJECT,
-        G_IMPLEMENT_INTERFACE (G_TYPE_ASYNC_INITABLE, hev_iobj_async_initable_iface_init));
+        G_IMPLEMENT_INTERFACE (G_TYPE_ASYNC_INITABLE,
+            hev_iobj_async_initable_iface_init));
 
 static void
 hev_iobj_dispose (GObject *obj)
@@ -58,7 +60,8 @@ hev_iobj_constructor (GType type,
 {
     g_debug ("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
 
-    return G_OBJECT_CLASS (hev_iobj_parent_class)->constructor (type, n, param);
+    return G_OBJECT_CLASS (hev_iobj_parent_class)->
+        constructor (type, n, param);
 }
 
 static void
@@ -122,7 +125,8 @@ hev_iobj_async_initable_init_async (GAsyncInitable *initable,
     simple = g_simple_async_result_new (G_OBJECT(initable),
                 callback, user_data, hev_iobj_async_initable_init_async);
     g_simple_async_result_set_check_cancellable (simple, cancellable);
-    g_simple_async_result_run_in_thread (simple, async_result_run_in_thread_handler,
+    g_simple_async_result_run_in_thread (simple,
+                async_result_run_in_thread_handler,
                 io_priority, cancellable);
     g_object_unref (simple);
 }
