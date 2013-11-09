@@ -14,7 +14,9 @@ main (int argc, char *argv[])
 {
 	GObject *iobj = NULL;
 
+#ifndef GLIB_VERSION_2_36
 	g_type_init ();
+#endif
 
 	iobj = hev_iobj_new ();
 	g_return_val_if_fail (G_IS_OBJECT (iobj), -1);
