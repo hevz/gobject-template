@@ -53,10 +53,14 @@ hev_iobj_constructor (GType type,
 			guint n,
 			GObjectConstructParam *param)
 {
+	GObject *obj = NULL;
+
 	g_debug ("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
 
-	return G_OBJECT_CLASS (hev_iobj_parent_class)->
+	obj = G_OBJECT_CLASS (hev_iobj_parent_class)->
 		constructor (type, n, param);
+
+	return obj;
 }
 
 static void
