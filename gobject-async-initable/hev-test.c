@@ -30,7 +30,9 @@ main (int argc, char *argv[])
 {
 	GMainLoop *main_loop = NULL;
 
+#ifndef GLIB_VERSION_2_36
 	g_type_init ();
+#endif
 
 	main_loop = g_main_loop_new (NULL, FALSE);
 
