@@ -1,9 +1,8 @@
 /*
  ============================================================================
  Name        : hev-iface.h
- Author      : Heiher <admin@heiher.info>
- Version     : 0.0.2
- Copyright   : Copyright (C) 2012 everyone.
+ Author      : Heiher <root@heiher.info>
+ Copyright   : Copyright (C) 2013 everyone.
  Description : 
  ============================================================================
  */
@@ -17,18 +16,18 @@ G_BEGIN_DECLS
 
 #define HEV_TYPE_IFACE (hev_iface_get_type ())
 #define HEV_IFACE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
-                HEV_TYPE_IFACE, HevIFace))
+				HEV_TYPE_IFACE, HevIFace))
 #define HEV_IS_IFACE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), \
-                HEV_TYPE_IFACE))
+				HEV_TYPE_IFACE))
 #define HEV_IFACE_GET_INTERFACE(inst) (G_TYPE_INSTANCE_GET_INTERFACE \
-            ((inst), HEV_TYPE_IFACE, HevIFaceInterface))
+			((inst), HEV_TYPE_IFACE, HevIFaceInterface))
 
 typedef struct _HevIFace HevIFace;
 typedef struct _HevIFaceInterface HevIFaceInterface;
 
 struct _HevIFaceInterface
 {
-    GTypeInterface parent_iface;
+	GTypeInterface parent_iface;
 };
 
 GType hev_iface_get_type (void);
