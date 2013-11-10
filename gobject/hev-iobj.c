@@ -59,6 +59,14 @@ hev_iobj_constructor (GType type,
 }
 
 static void
+hev_iobj_init (HevIObj *self)
+{
+	HevIObjPrivate *priv = HEV_IOBJ_GET_PRIVATE (self);
+
+	g_debug ("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
+}
+
+static void
 hev_iobj_constructed (GObject *obj)
 {
 	g_debug ("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
@@ -79,14 +87,6 @@ hev_iobj_class_init (HevIObjClass *klass)
 	obj_class->finalize = hev_iobj_finalize;
 
 	g_type_class_add_private (klass, sizeof (HevIObjPrivate));
-}
-
-static void
-hev_iobj_init (HevIObj *self)
-{
-	HevIObjPrivate *priv = HEV_IOBJ_GET_PRIVATE (self);
-
-	g_debug ("%s:%d[%s]", __FILE__, __LINE__, __FUNCTION__);
 }
 
 GObject *
